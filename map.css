@@ -1,0 +1,102 @@
+body{ 
+margin:0;
+padding:0;
+}
+#map{ 
+position:absolute; 
+top:0; 
+bottom:0; 
+width:100%; 
+}
+
+.css-icon-entertainment {
+	
+	background: url("./icons/icon-entertainment.png");
+	background-position:absolute;
+	background-size: cover;
+}
+
+.css-icon-food {
+	
+	background: url("./icons/icon-food.png");
+	background-position:absolute;
+	background-size: cover;
+}
+.css-icon-essentials {
+	
+	background: url("./icons/icon-essentials.png");
+	background-position:absolute;
+	background-size: cover;
+}
+
+.css-icon-grocery {
+	
+	background: url("./icons/icon-grocery.png");
+	background-position:absolute;
+	background-size: cover;
+}
+
+.css-icon-shop {
+	
+	background: url("./icons/icon-shop.png");
+	background-position:absolute;
+	background-size: cover;
+}
+
+.modal{
+	position: fixed;
+	width: 300px;
+	background-color: white;
+	box-shadow: 0 0 20px 0.4px #222A36;
+	left: 50%;
+   	top: 50%;
+   	transform: translate(-50%, -50%);
+	padding:2em;
+	text-align: justify;
+	border-radius: 10%;
+	display: none;
+}
+
+.hidden{
+display: none;
+}
+.modal-flexbox{
+	display: flex;
+	flex-direction: column;
+	
+}
+.modal-column{
+	display:flex;
+	justify-content: center;
+	
+}
+
+.modal img{
+	width: 100px;
+}
+
+
+.floating-filter-section{
+	position:fixed;
+	width: 50px;
+	right:1em;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: white;
+	padding:1em;
+	box-shadow: 0 0 20px 0.4px #222A36;
+	border-radius: 20px;
+}
+
+.filter-flexbox{
+	display: flex;
+	flex-direction: column;
+}
+.row{
+	width: 100%;
+}
+
+.row img{
+	width: 100%;
+	cursor: pointer;
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Create markers from HTML</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+<link rel="stylesheet" href="map.css">
+<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+
+
+
+</head>
+<body>
+<div id='map'></div>
+
+
+<div class="modal" id="modal">
+
+    <div class="modal-flexbox">
+      <div class="modal-column">
+        <img src="./icons/icon-food.png" class="modal-icon">
+      </div>
+      <div class="modal-column">
+        <h1>Dongalo's Tapsihan</h1>
+      </div>
+    </div>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis necessitatibus ab corrupti mollitia tempora, rerum dolorum possimus aut. Totam aut quidem maxime qui veritatis soluta quibusdam quod possimus quam eaque?</p>
+
+</div>
+
+<div class="floating-filter-section">
+
+    <div class="filter-flexbox">
+
+
+      <div class="row">
+        <img src="./icons/sec-grocery.png" id="groceryBtn">
+      </div>
+
+
+      <div class="row">
+        <img src="./icons/sec-essentials.png"  id="essentialsBtn">
+      </div>
+
+
+      <div class="row">
+        <img src="./icons/sec-shopping.png"  id="shoppingBtn">
+      </div>
+
+
+      <div class="row">
+        <img src="./icons/sec-food.png"  id="foodBtn">
+      </div>
+
+
+      <div class="row">
+        <img src="./icons/sec-entertainment.png"  id="entertainmentBtn">
+      </div>
+
+
+      <div class="row">
+        <img src="./icons/sec-seeall.png"  id="seeallBtn">
+      </div>
+
+
+    </div>
+</div>
+
+<script>
+
+L.mapbox.accessToken = 'pk.eyJ1IjoieWVzaHVhNjk2OTY5IiwiYSI6ImNrdWE0azFsNjBkNzIydW8xYXJmemN0ZGoifQ.2VDp6BOPCxpYZE--X4yFDQ';
+var map = L.mapbox.map('map')
+    .setView([14.407,120.919], 12.64)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/yeshua696969/cl0fhwwnd003o15m6a0i6jxkm'));
+
+
+var cssIconEntertainment = L.divIcon({
+  
+  className: 'css-icon-entertainment',
+  iconSize: [30,30]
+
+});
+
+var cssIconFood = L.divIcon({
+  className: 'css-icon-food',
+  iconSize: [30,30]
+});
+
+var cssIconEssentials = L.divIcon({
+  className: 'css-icon-essentials',
+  iconSize: [30,30]
+});
+
+var cssIconGrocery = L.divIcon({
+  className: 'css-icon-grocery',
+  iconSize: [30,30]
+});
+
+var cssIconShop = L.divIcon({
+  className: 'css-icon-shop',
+  iconSize: [30,30]
+});
+
+
+
+/*
+for(var i = 0; i < icons.length; i++){
+
+    icons[i].addEventListener('click',function(){
+    modal.style.display = "block";
+    console.log(1);
+
+});
+}
+
+
+
+modal.addEventListener('click',function(){
+
+  
+});
+*/
+var modal = document.querySelector("#modal");
+map.on('click', (e) => {
+modal.style.display ="block";
+});
+
+modal.addEventListener('click',function(){
+  modal.style.display ="none";
+});
+
+ const foodMarkers = [L.marker([14.430,120.925], {icon: cssIconFood}).addTo(map),
+ L.marker([14.425,120.912], {icon: cssIconFood}).addTo(map)
+];
+
+const essentialMarkers = [L.marker([14.418,120.934], {icon: cssIconEssentials}).addTo(map),
+L.marker([14.415,120.890], {icon: cssIconEssentials}).addTo(map)
+];
+
+const groceryMarkers = [L.marker([14.418,120.920], {icon: cssIconGrocery}).addTo(map),
+L.marker([14.400,120.900], {icon: cssIconGrocery}).addTo(map),
+L.marker([14.380,120.950], {icon: cssIconGrocery}).addTo(map),
+L.marker([14.398,120.960], {icon: cssIconGrocery}).addTo(map)
+];
+
+const shopMarkers = [
+L.marker([14.432,120.900], {icon: cssIconShop}).addTo(map),
+L.marker([14.440,120.920], {icon: cssIconShop}).addTo(map),
+L.marker([14.390,120.940], {icon: cssIconShop}).addTo(map),
+L.marker([14.380,120.970], {icon: cssIconShop}).addTo(map)
+];
+const entertainmentMarkers = [
+L.marker([14.410,120.970], {icon: cssIconEntertainment}).addTo(map)
+];
+
+const allMarkers = [foodMarkers,essentialMarkers,groceryMarkers,shopMarkers,entertainmentMarkers];
+
+
+
+const groceryBtn = document.querySelector("#groceryBtn");
+const essentialsBtn = document.querySelector("#essentialsBtn");
+const shoppingBtn = document.querySelector("#shoppingBtn");
+const foodBtn = document.querySelector("#foodBtn");
+const entertainmentBtn = document.querySelector("#entertainmentBtn");
+const seeallBtn = document.querySelector("#seeallBtn");
+
+const removeMarkers = () =>{
+  for(markers of allMarkers){
+  for(submarkers of markers){
+    map.removeLayer(submarkers);
+  }
+}
+}
+
+groceryBtn.addEventListener('click',function(){
+
+ removeMarkers();
+
+  for(marker of groceryMarkers){
+    map.addLayer(marker);
+  }
+
+});
+
+essentialsBtn.addEventListener('click',function(){
+
+removeMarkers();
+
+ for(marker of essentialMarkers){
+   map.addLayer(marker);
+ }
+
+});
+
+shoppingBtn.addEventListener('click',function(){
+
+removeMarkers();
+
+ for(marker of shopMarkers){
+   map.addLayer(marker);
+ }
+
+});
+
+foodBtn.addEventListener('click',function(){
+
+removeMarkers();
+
+ for(marker of foodMarkers){
+   map.addLayer(marker);
+ }
+
+});
+
+entertainmentBtn.addEventListener('click',function(){
+
+removeMarkers();
+
+ for(marker of entertainmentMarkers){
+   map.addLayer(marker);
+ }
+
+});
+
+seeallBtn.addEventListener('click',function(){
+
+  for(markers of allMarkers){
+  for(submarkers of markers){
+    map.addLayer(submarkers);
+  }
+}
+
+
+});
+</script>
+</body>
+</html>
